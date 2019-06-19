@@ -11,16 +11,14 @@ import UIKit
 
 class PhotoDetailsViewController: UIViewController {
   var photoDetails: PhotoModel?
-  
   @IBOutlet weak var photoImageView: UIImageView!
   
   public func setup(photoDetails: PhotoModel) {
     self.photoDetails = photoDetails
-    self.photoImageView.image = self.photoDetails?.photoImage
+    self.photoImageView.image = photoDetails.photoImage
   }
 
   @IBAction func backBtnTapped(_ sender: Any) {
-    self.dismiss(animated: true, completion: nil)
-    
+    dismiss(animated: true, completion: nil)
   }
 }

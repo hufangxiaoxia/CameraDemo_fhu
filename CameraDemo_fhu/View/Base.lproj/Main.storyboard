@@ -123,6 +123,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SIH-On-gyv">
                                         <rect key="frame" x="203" y="35" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="OK"/>
                                         <connections>
                                             <action selector="namePhotoBtnTapped:" destination="1xL-lV-yFQ" eventType="touchUpInside" id="wqV-Aw-uPo"/>
@@ -143,11 +144,13 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AZ7-O5-L3l" userLabel="Shoot Button">
-                                <rect key="frame" x="167" y="607" width="41" height="30"/>
+                                <rect key="frame" x="158" y="587" width="59" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="41" id="lgy-G2-8fu"/>
-                                    <constraint firstAttribute="height" constant="30" id="wxl-3H-gZQ"/>
+                                    <constraint firstAttribute="width" constant="59" id="Sc5-NE-AHz"/>
+                                    <constraint firstAttribute="height" constant="30" id="YlA-F9-Ecd"/>
                                 </constraints>
+                                <size key="titleShadowOffset" width="2" height="2"/>
                                 <state key="normal" title="Shoot"/>
                                 <connections>
                                     <action selector="takePhotoButtonTapped:" destination="1xL-lV-yFQ" eventType="touchUpInside" id="GKv-DI-W7r"/>
@@ -157,14 +160,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="VoL-yP-uSV" firstAttribute="bottom" secondItem="qaZ-sx-6P7" secondAttribute="bottom" id="65Z-ac-GYh"/>
-                            <constraint firstItem="AZ7-O5-L3l" firstAttribute="leading" secondItem="qaZ-sx-6P7" secondAttribute="leading" constant="167" id="7xB-ej-KnJ"/>
                             <constraint firstItem="VoL-yP-uSV" firstAttribute="top" secondItem="LrD-IS-TWN" secondAttribute="top" id="D1g-hF-icO"/>
                             <constraint firstItem="lRf-F9-Zmm" firstAttribute="leading" secondItem="qaZ-sx-6P7" secondAttribute="leading" constant="51" id="DZe-Ei-kxf"/>
-                            <constraint firstItem="qaZ-sx-6P7" firstAttribute="trailing" secondItem="AZ7-O5-L3l" secondAttribute="trailing" constant="167" id="HZ0-v9-fMH"/>
+                            <constraint firstItem="qaZ-sx-6P7" firstAttribute="trailing" secondItem="AZ7-O5-L3l" secondAttribute="trailing" constant="158" id="JXb-eU-B2E"/>
                             <constraint firstItem="lRf-F9-Zmm" firstAttribute="top" secondItem="qaZ-sx-6P7" secondAttribute="top" constant="263" id="OBv-RO-I5K"/>
-                            <constraint firstItem="qaZ-sx-6P7" firstAttribute="bottom" secondItem="AZ7-O5-L3l" secondAttribute="bottom" constant="30" id="U75-xR-YDB"/>
+                            <constraint firstItem="qaZ-sx-6P7" firstAttribute="bottom" secondItem="AZ7-O5-L3l" secondAttribute="bottom" constant="50" id="OD4-gG-wp7"/>
                             <constraint firstItem="VoL-yP-uSV" firstAttribute="trailing" secondItem="qaZ-sx-6P7" secondAttribute="trailing" id="kPD-0L-gDR"/>
                             <constraint firstItem="VoL-yP-uSV" firstAttribute="leading" secondItem="qaZ-sx-6P7" secondAttribute="leading" id="ljg-NE-iG2"/>
+                            <constraint firstItem="AZ7-O5-L3l" firstAttribute="leading" secondItem="qaZ-sx-6P7" secondAttribute="leading" constant="158" id="mU4-IM-LUA"/>
                             <constraint firstItem="qaZ-sx-6P7" firstAttribute="trailing" secondItem="lRf-F9-Zmm" secondAttribute="trailing" constant="51" id="mjB-54-w9j"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qaZ-sx-6P7"/>
@@ -177,7 +180,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PZZ-uw-EaX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="786" y="-691"/>
+            <point key="canvasLocation" x="784.79999999999995" y="-691.304347826087"/>
         </scene>
         <!--Gallery View Controller-->
         <scene sceneID="XDW-7E-9ee">
@@ -295,10 +298,11 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNe-Vk-YSe">
-                                <rect key="frame" x="15" y="20" width="34" height="30"/>
+                                <rect key="frame" x="15" y="40" width="40" height="20"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="34" id="7Fc-Ai-cUr"/>
-                                    <constraint firstAttribute="height" constant="30" id="gDr-L4-cnh"/>
+                                    <constraint firstAttribute="width" constant="40" id="7Fc-Ai-cUr"/>
+                                    <constraint firstAttribute="height" constant="20" id="gDr-L4-cnh"/>
                                 </constraints>
                                 <state key="normal" title="Back"/>
                                 <connections>
@@ -311,10 +315,8 @@
                             <constraint firstItem="sI1-go-oB0" firstAttribute="top" secondItem="XmM-7r-kVR" secondAttribute="top" id="7iu-eh-G8b"/>
                             <constraint firstItem="sI1-go-oB0" firstAttribute="leading" secondItem="mCU-2X-DW7" secondAttribute="leading" id="IxM-gm-NWz"/>
                             <constraint firstItem="HNe-Vk-YSe" firstAttribute="leading" secondItem="XmM-7r-kVR" secondAttribute="leading" constant="15" id="JBK-wT-DMD"/>
-                            <constraint firstItem="XmM-7r-kVR" firstAttribute="bottom" secondItem="HNe-Vk-YSe" secondAttribute="bottom" constant="617" id="N2o-Pa-mi5"/>
-                            <constraint firstItem="XmM-7r-kVR" firstAttribute="trailing" secondItem="HNe-Vk-YSe" secondAttribute="trailing" constant="326" id="P3p-dX-tRJ"/>
                             <constraint firstAttribute="trailing" secondItem="sI1-go-oB0" secondAttribute="trailing" id="bW5-AG-dt6"/>
-                            <constraint firstItem="HNe-Vk-YSe" firstAttribute="top" secondItem="XmM-7r-kVR" secondAttribute="top" id="t5g-Dt-oXK"/>
+                            <constraint firstItem="HNe-Vk-YSe" firstAttribute="top" secondItem="XmM-7r-kVR" secondAttribute="top" constant="20" id="t5g-Dt-oXK"/>
                             <constraint firstAttribute="bottom" secondItem="sI1-go-oB0" secondAttribute="bottom" id="tHJ-GW-ie0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XmM-7r-kVR"/>

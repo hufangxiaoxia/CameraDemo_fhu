@@ -14,14 +14,14 @@ extension PhotoViewController {
   func setupCamera() {
     captureSession = AVCaptureSession()
     guard let captureSession = captureSession else {
-      print("unable to create AVCaptureSession")
+      print(#function + " Unable to create AVCaptureSession")
       return
     }
     
     videoCaptureDevice = AVCaptureDevice.default(for: AVMediaType.video)
     
     guard let videoCaptureDevice = videoCaptureDevice else {
-      print("unable to create AVCaptureDevice")
+      print(#function + " Unable to create AVCaptureDevice")
       return
     }
     
@@ -31,7 +31,7 @@ extension PhotoViewController {
       videoInput = try AVCaptureDeviceInput( device: videoCaptureDevice )
     }
     catch {
-      print("Failed to get video input")
+      print(#function + " Failed to get video input")
       handleFailure()
       return
     }
@@ -45,11 +45,11 @@ extension PhotoViewController {
       captureSession.addInput(videoInput)
     }
     else {
-      print("Failed to add input to capture session")
+      print(#function + " Failed to add input to capture session")
       handleFailure()
       return
     }
-    
+    //TODO: use AVCapturePhotoOutput rather than AVCaptureStillImageOutput
     stillImageOutput = AVCaptureStillImageOutput()
     stillImageOutput?.outputSettings = [AVVideoCodecKey:AVVideoCodecJPEG]
     if let stillImageOutput = stillImageOutput,
@@ -57,14 +57,14 @@ extension PhotoViewController {
       captureSession.addOutput(stillImageOutput)
     }
     else {
-      print("Failed to add output to capture session")
+      print(#function + " Failed to add output to capture session")
       handleFailure()
       return
     }
     
-    previewLayer = AVCaptureVideoPreviewLayer( session: captureSession )
+    previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
     guard let previewLayer = previewLayer else {
-      print("unable to create AVCaptureVideoPreviewLayer")
+      print(#function + " Unable to create AVCaptureVideoPreviewLayer")
       return
     }
     previewLayer.frame = view.layer.bounds
@@ -90,26 +90,26 @@ extension PhotoViewController {
 
   func takePhoto(_ imageBlock: @escaping (_ image: UIImage?)->()) {
     guard let stillImageOutput = stillImageOutput else {
-      print("failed to get still image output")
+      print(#function + " Failed to get still image output")
       imageBlock(nil)
       return
     }
     
     guard let videoConnection = stillImageOutput.connection(with: AVMediaType.video) else {
-      print("failed to get still connectionWithMediaType")
+      print(#function + " Failed to get still connectionWithMediaType")
       imageBlock(nil)
       return
     }
     
     stillImageOutput.captureStillImageAsynchronously(from: videoConnection) { (imageDataSampleBuffer, error) -> Void in
       if error != nil {
-        print("Error capturing still image: \(error)")
+        print(#function + " Error capturing still image: \(String(describing: error))")
         imageBlock(nil)
       }
       else {
         guard let imageDataSampleBuffer = imageDataSampleBuffer,
           let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer) else {
-          print("Error converting image to jpeg")
+          print(#function + " Failed when converting image to jpeg")
           imageBlock(nil)
           return
         }

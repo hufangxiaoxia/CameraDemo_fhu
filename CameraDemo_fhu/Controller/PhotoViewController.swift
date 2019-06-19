@@ -12,7 +12,6 @@ import AVFoundation
 import CoreData
 
 class PhotoViewController: UIViewController {
-  
   var captureSession: AVCaptureSession?
   var videoCaptureDevice: AVCaptureDevice?
   var stillImageOutput: AVCaptureStillImageOutput?
@@ -26,11 +25,10 @@ class PhotoViewController: UIViewController {
     let timeString = formatter.string(from: currentTime)
     return timeString
   }
+  let defaultPhotoName = "photo"
   
   @IBOutlet weak var cameraContainerView: UIView!
-  
   @IBOutlet weak var nameThePhotoView: UIView!
-  
   @IBOutlet weak var nameField: UITextField!
   
   override func viewDidLoad() {
@@ -53,7 +51,6 @@ class PhotoViewController: UIViewController {
   
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
-    
     if takePhotoShowing {
       stopCamera()
     }
@@ -79,12 +76,11 @@ class PhotoViewController: UIViewController {
   }
   
   @IBAction func namePhotoBtnTapped(_ sender: Any) {
-    let name = nameField.text ?? "photo"
+    let name = nameField.text ?? defaultPhotoName
     saveThePhoto(with: name)
     nameThePhotoView.isHidden = true
     view.sendSubviewToBack(nameThePhotoView)
     stopCamera()
-    
     navigationController?.popToRootViewController(animated: true)
   }
   
@@ -93,31 +89,28 @@ class PhotoViewController: UIViewController {
   }
   
   func saveImageToDB(image: UIImage, imageName: String, shootDate: String) {
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+      print(#function + " failed to get appDelegate.")
+      return
+    }
     let context = appDelegate.persistentContainer.viewContext
     
-    //Insert data into Picture Entity
+    //Insert data into Entity
     let entity = NSEntityDescription.insertNewObject(forEntityName: "Photo", into: context)
-    
-    // Save values getting from titleView in title coloum in database
+    // Save values getting from database
     entity.setValue(imageName, forKey: "title")
-    
-    // Save value getting from dateView in date coloum in database
     entity.setValue(shootDate, forKey: "shootDate")
-    
-    // Save value getting from ImageUploadView in date coloum in database
     entity.setValue(image.pngData(), forKey: "image")
     
     do{
       try context.save()
-      // alert to inform user, success of the submission
+      // Inform user with a success
       let alert = UIAlertController(title: "Cogratulations", message: "Successfully Updated the Database", preferredStyle: .alert)
       alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-      
       alert.show(self, sender: nil)
     }
     catch{
-      //alert user to error of submission
+      //Inform user with an error
       let alert = UIAlertController(title: "Sorry", message: "Error While Updating Database", preferredStyle: .alert)
       alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
       alert.show(self, sender: nil)

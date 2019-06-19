@@ -12,30 +12,32 @@ import CoreData
 
 class GalleryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   @IBOutlet weak var tableView: UITableView!
-  
   var data = [NSManagedObject]()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let del = UIApplication.shared.delegate as! AppDelegate
-    let context = del.persistentContainer.viewContext
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+      print(#function + " failed to get appDelegate.")
+      return
+    }
+    let context = appDelegate.persistentContainer.viewContext
     let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
-
     request.returnsObjectsAsFaults = false;
     
-    do{
+    do {
       let results = try context.fetch(request)
-      if results.count > 0
-      {
-        data = results as! [NSManagedObject]
+      if results.count > 0 {
+        guard let result = results as? [NSManagedObject] else {
+          print(#function + " failed to get results when retrieve from database.")
+          return
+        }
+        data = result
       }
     }
-    catch
-    {
-      print("Error")
+    catch {
+      print(#function + " Error occurred when retrieve from database.")
     }
-    
     tableView.reloadData()
   }
 
@@ -47,27 +49,32 @@ class GalleryViewController: UIViewController, UITableViewDelegate, UITableViewD
     let cell = tableView.dequeueReusableCell(withIdentifier: "pictureTableViewCell") as! PictureTableViewCell
     cell.photoName.text = data[indexPath.row].value(forKey: "title") as? String
     cell.shootDate.text = data[indexPath.row].value(forKey: "shootDate") as? String
-
-    let image = data[indexPath.row].value(forKey: "image") as! Data
+    guard let image = data[indexPath.row].value(forKey: "image") as? Data else {
+      print(#function + " failed to get image data for selected cell.")
+      return cell
+    }
     let photoImage = UIImage(data: image as Data)
     cell.photoImageView.image = photoImage
-
     return cell
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let photoName = data[indexPath.row].value(forKey: "title") as? String,
       let shootDate = data[indexPath.row].value(forKey: "shootDate") as? String,
-      let photoImage = UIImage(data: data[indexPath.row].value(forKey: "image") as! Data ) else {
-        print("Error: cannot fetch the information for selected photo.")
+      let imageData = data[indexPath.row].value(forKey: "image") as? Data,
+      let photoImage = UIImage(data: imageData) else {
+        print(#function + " Error occurred when fetching the detail information for selected photo.")
         return
     }
     let photoModel = PhotoModel(photoImage: photoImage, photoName: photoName, shootDate: shootDate)
     
     let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-    let photoDetailsViewController = storyboard.instantiateViewController(withIdentifier: "PhotoDetailsViewController") as! PhotoDetailsViewController
+    guard let photoDetailsViewController = storyboard.instantiateViewController(withIdentifier: "PhotoDetailsViewController") as? PhotoDetailsViewController else {
+      print(#function + " failed to create photoDetailsViewController.")
+      return
+    }
     
-    self.present(photoDetailsViewController, animated: true, completion: nil)
+    present(photoDetailsViewController, animated: true, completion: nil)
     photoDetailsViewController.setup(photoDetails: photoModel)
   }
 }
