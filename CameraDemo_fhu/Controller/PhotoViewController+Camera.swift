@@ -100,6 +100,19 @@ extension PhotoViewController {
       imageBlock(nil)
       return
     }
+    //Adjust the image orientation
+    if videoConnection.isVideoOrientationSupported {
+      switch UIDevice.current.orientation{
+      case .portrait, .unknown, .faceUp, .faceDown:
+        videoConnection.videoOrientation = .portrait
+      case .landscapeLeft:
+        videoConnection.videoOrientation = .landscapeLeft
+      case .landscapeRight:
+        videoConnection.videoOrientation = .landscapeRight
+      case .portraitUpsideDown:
+        videoConnection.videoOrientation = .portraitUpsideDown
+      }
+    }
     
     stillImageOutput.captureStillImageAsynchronously(from: videoConnection) { (imageDataSampleBuffer, error) -> Void in
       if error != nil {
