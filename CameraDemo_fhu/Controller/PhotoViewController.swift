@@ -85,35 +85,6 @@ class PhotoViewController: UIViewController {
   }
   
   func saveThePhoto(with name: String) {
-    saveImageToDB(image: photoImage, imageName: name, shootDate: shootDate)
-  }
-  
-  func saveImageToDB(image: UIImage, imageName: String, shootDate: String) {
-    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-      print(#function + " failed to get appDelegate.")
-      return
-    }
-    let context = appDelegate.persistentContainer.viewContext
-    
-    //Insert data into Entity
-    let entity = NSEntityDescription.insertNewObject(forEntityName: "Photo", into: context)
-    // Save values getting from database
-    entity.setValue(imageName, forKey: "title")
-    entity.setValue(shootDate, forKey: "shootDate")
-    entity.setValue(image.pngData(), forKey: "image")
-    
-    do{
-      try context.save()
-      // Inform user with a success
-      let alert = UIAlertController(title: "Cogratulations", message: "Successfully Updated the Database", preferredStyle: .alert)
-      alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-      alert.show(self, sender: nil)
-    }
-    catch{
-      //Inform user with an error
-      let alert = UIAlertController(title: "Sorry", message: "Error While Updating Database", preferredStyle: .alert)
-      alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-      alert.show(self, sender: nil)
-    }
+    CoreDataHelper.saveImageToDB(image: photoImage, imageName: name, shootDate: shootDate)
   }
 }

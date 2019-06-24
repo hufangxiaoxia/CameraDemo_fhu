@@ -12,32 +12,11 @@ import CoreData
 
 class GalleryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   @IBOutlet weak var tableView: UITableView!
-  var data = [NSManagedObject]()
+  var data = [NSManagedObject?]()
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-      print(#function + " failed to get appDelegate.")
-      return
-    }
-    let context = appDelegate.persistentContainer.viewContext
-    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
-    request.returnsObjectsAsFaults = false;
-    
-    do {
-      let results = try context.fetch(request)
-      if results.count > 0 {
-        guard let result = results as? [NSManagedObject] else {
-          print(#function + " failed to get results when retrieve from database.")
-          return
-        }
-        data = result
-      }
-    }
-    catch {
-      print(#function + " Error occurred when retrieve from database.")
-    }
+    data = CoreDataHelper.retrieveImageFromDB()
     tableView.reloadData()
   }
 
@@ -47,9 +26,9 @@ class GalleryViewController: UIViewController, UITableViewDelegate, UITableViewD
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "pictureTableViewCell") as! PictureTableViewCell
-    cell.photoName.text = data[indexPath.row].value(forKey: "title") as? String
-    cell.shootDate.text = data[indexPath.row].value(forKey: "shootDate") as? String
-    guard let image = data[indexPath.row].value(forKey: "image") as? Data else {
+    cell.photoName.text = data[indexPath.row]?.value(forKey: "title") as? String
+    cell.shootDate.text = data[indexPath.row]?.value(forKey: "shootDate") as? String
+    guard let image = data[indexPath.row]?.value(forKey: "image") as? Data else {
       print(#function + " failed to get image data for selected cell.")
       return cell
     }
@@ -59,9 +38,9 @@ class GalleryViewController: UIViewController, UITableViewDelegate, UITableViewD
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    guard let photoName = data[indexPath.row].value(forKey: "title") as? String,
-      let shootDate = data[indexPath.row].value(forKey: "shootDate") as? String,
-      let imageData = data[indexPath.row].value(forKey: "image") as? Data,
+    guard let photoName = data[indexPath.row]?.value(forKey: "title") as? String,
+      let shootDate = data[indexPath.row]?.value(forKey: "shootDate") as? String,
+      let imageData = data[indexPath.row]?.value(forKey: "image") as? Data,
       let photoImage = UIImage(data: imageData) else {
         print(#function + " Error occurred when fetching the detail information for selected photo.")
         return

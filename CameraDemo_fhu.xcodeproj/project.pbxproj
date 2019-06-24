@@ -14,6 +14,7 @@
 		4D71051922BFBB5D002AC7C1 /* SpecTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D71051422BFBB5D002AC7C1 /* SpecTools.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4D71051A22BFBB5D002AC7C1 /* SpecTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D71051422BFBB5D002AC7C1 /* SpecTools.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4D71051C22BFBF4F002AC7C1 /* PhotoDetailsViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D71051B22BFBF4F002AC7C1 /* PhotoDetailsViewControllerSpec.swift */; };
+		4D71064A22C0C6A9002AC7C1 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D71064922C0C6A9002AC7C1 /* CoreDataHelper.swift */; };
 		4DBDAFA322BA2ED70039E61B /* PhotoDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDAFA222BA2ED70039E61B /* PhotoDetailsViewController.swift */; };
 		4DBDB19F22BA35370039E61B /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDB19E22BA35370039E61B /* PhotoModel.swift */; };
 		4DE1901022B8CD9700D42A0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE1900F22B8CD9700D42A0D /* AppDelegate.swift */; };
@@ -44,6 +45,7 @@
 		4D71051322BFBB5C002AC7C1 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = "<group>"; };
 		4D71051422BFBB5D002AC7C1 /* SpecTools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpecTools.framework; sourceTree = "<group>"; };
 		4D71051B22BFBF4F002AC7C1 /* PhotoDetailsViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailsViewControllerSpec.swift; sourceTree = "<group>"; };
+		4D71064922C0C6A9002AC7C1 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		4DBDAFA222BA2ED70039E61B /* PhotoDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailsViewController.swift; sourceTree = "<group>"; };
 		4DBDB19E22BA35370039E61B /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		4DE1900C22B8CD9700D42A0D /* CameraDemo_fhu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraDemo_fhu.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +112,7 @@
 			children = (
 				4DBDB19E22BA35370039E61B /* PhotoModel.swift */,
 				4DE1901622B8CD9700D42A0D /* CameraDemo_fhu.xcdatamodeld */,
+				4D71064922C0C6A9002AC7C1 /* CoreDataHelper.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DE1901222B8CD9700D42A0D /* ViewController.swift in Sources */,
+				4D71064A22C0C6A9002AC7C1 /* CoreDataHelper.swift in Sources */,
 				4DE1903322B8E43A00D42A0D /* PhotoViewController+Camera.swift in Sources */,
 				4DE1901822B8CD9700D42A0D /* CameraDemo_fhu.xcdatamodeld in Sources */,
 				4DE1923122B9EB8500D42A0D /* GalleryViewController.swift in Sources */,
